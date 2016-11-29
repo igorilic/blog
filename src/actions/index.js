@@ -3,11 +3,16 @@
  */
 
 import * as types from './actions';
+import axios from 'axios';
 
-export function selectBook(book) {
-  console.log(`A book is selected: ${book.title}`);
+const ROOT_URL = 'http://reduxblog.herokuapp.com/api/';
+const API_KEY = '?key=teacher2';
+
+export function fetchPosts() {
+  const request = axios.get(`${ROOT_URL}posts${API_KEY}`);
+  
   return {
-    type: types.BOOK_SELECTED,
-    payload: book
+    type: types.FETCH_POSTS,
+    payload: request
   }
 }
